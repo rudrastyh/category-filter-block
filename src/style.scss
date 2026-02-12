@@ -1,0 +1,12 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ */
+
+.rudr-category-filter{
+	&--dropdown{
+		select{
+			font-size: inherit;
+		}
+	}
+}
