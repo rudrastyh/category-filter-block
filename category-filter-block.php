@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Category Filter Block
  * Description:       Just a simple category filter block with the Interactivity API support.
- * Version:           1.0.0
+ * Version:           1.1
  * Requires at least: 6.5
  * Requires PHP:      7.0
  * Author:            Misha Rudrastyh
@@ -30,7 +30,7 @@ if( ! class_exists( 'Rudr_Category_Filter_Block' ) ) {
 
 			add_filter( 'pre_get_posts', array( $this, 'filter_main_query' ) );
 			add_filter( 'query_loop_block_query_vars', array( $this, 'filter_secondary_queries' ), 999, 3 );
-			add_filter( 'plugin_row_meta', array( $this, 'row_meta' ), 10, 4 );
+			add_filter( 'plugin_action_links', array( $this, 'action_links' ), 10, 4 );
 
 		}
 
@@ -97,10 +97,10 @@ if( ! class_exists( 'Rudr_Category_Filter_Block' ) ) {
 
 		}
 
-		public function row_meta( $links, $plugin_file_name, $plugin_data, $status ){
+		public function action_links( $links, $plugin_file_name, $plugin_data, $status ){
 
 			if( strpos( $plugin_file_name, basename(__FILE__) ) ) {
-				$links[] = '<a href="https://rudrastyh.com/plugins/taxonomy-filter-block">Upgrade to Pro</a>';
+				array_unshift( $links, '<a href="https://rudrastyh.com/plugins/taxonomy-filter-block">Upgrade to Pro</a>' );
 			}
 
 			return $links;
